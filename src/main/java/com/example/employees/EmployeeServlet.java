@@ -19,13 +19,14 @@ import javax.servlet.http.HttpServletResponse;
         name = "EmployeeServlet",
         urlPatterns = {"/employee"}
 )
-public class EmployeeServlet {
+public class EmployeeServlet extends HttpServlet{
     EmployeeService employeeService = new EmployeeService();
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("searchAction");
         if(action != null) {
+            switch(action) {
             case "searchById":
                 searchEmployeeById(req, resp);
                 break;

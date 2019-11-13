@@ -1,8 +1,7 @@
-package java.com.example.employees;
+package com.example.employees;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class EmployeeService {
@@ -13,6 +12,9 @@ public class EmployeeService {
     }
     
     public List<Employee> searchEmployeesByName(String name) {
+        Comparator<Employee> groupByComparator = Comparator.comparing(Employee::getName)
+                .thenComparing(Employee::getLastName);
+        
         List<Employee> result = employeeList
                 .stream()
                 .filter(e -> e.getName().equalsIgnoreCase(name) || e.getLastName().equalsIgnoreCase(name))
@@ -28,7 +30,7 @@ public class EmployeeService {
                 .findFirst();
         
         if(match.isPresent()) {
-            return match.get()
+            return match.get();
         } else {
             throw new Exception ("The Employee id " + id + " not found");
         }
