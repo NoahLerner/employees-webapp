@@ -17,6 +17,9 @@
                 <button type="submit" class="btn btn-info">
                     <span class="glyphicon glyphicon-search"></span> Search
                 </button>
+                <button type="reset" class="btn btn-info">
+                    Clear Text
+                </button>
                 <br></br>
                 <br></br>
             </form>
