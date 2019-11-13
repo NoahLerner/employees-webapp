@@ -2,7 +2,8 @@
 <html>
     <head>
        <link rel="stylesheet" href="../css/bootstrap.min.css"/>         
-       <script src="../js/bootstrap.min.js"></script>       
+       <script src="../js/bootstrap.min.js"></script>
+       <script src="../js/resetGridHandler.js"></script>
     </head>
 
     <body>          
@@ -19,6 +20,9 @@
                 </button>
                 <button type="reset" class="btn btn-info">
                     Clear Text
+                </button>
+                <button id="resetGridBtn" onClick="handleResetGrid(this)" class="btn btn-info">
+                    Reset Search
                 </button>
                 <br></br>
                 <br></br>
