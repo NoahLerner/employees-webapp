@@ -1,4 +1,4 @@
-/* Copyright © 2015 Oracle and/or its affiliates. All rights reserved. */
+/* Copyright ï¿½ 2015 Oracle and/or its affiliates. All rights reserved. */
 package com.example.employees;
 
 import java.io.IOException;
@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
  
 @WebServlet(
         name = "EmployeeServlet",
@@ -38,6 +41,36 @@ public class EmployeeServlet extends HttpServlet{
             List<Employee> result = employeeService.getAllEmployees();
             forwardListEmployees(req, resp, result);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        JsonObject jobj = new Gson().fromJson(req.getReader(), JsonObject.class);
+        req.setAttribute("jsonObject", jobj);
+        String action = jobj.get("action").getAsString();
+        switch (action) {
+            case "add":
+                addEmployeeAction(req, resp);
+                break;
+            // TODO
+            // 1. edit employee
+            // 2. delete employee
+        }
+    } 
+    private void addEmployeeAction(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Employee newEmployee = gson.fromJson(req.getAttribute("jsonObject").toString(), Employee.class);
+        employeeService.addEmployee(newEmployee);
+        
+        req.setAttribute("action", "new");
+        String nextJSP = "/jsp/list-employees.jsp";
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        dispatcher.forward(req, resp); 
     }
     
     private void searchEmployeeById(HttpServletRequest req, HttpServletResponse resp)
@@ -65,11 +98,12 @@ public class EmployeeServlet extends HttpServlet{
         forwardListEmployees(req, resp, result);
     }
 
-    private void forwardListEmployees(HttpServletRequest req, HttpServletResponse resp, List employeeList)
+    private void forwardListEmployees(HttpServletRequest req, HttpServletResponse resp, List<Employee> employeeList)
             throws ServletException, IOException {
         String nextJSP = "/jsp/list-employees.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         req.setAttribute("employeeList", employeeList);
         dispatcher.forward(req, resp);
-    }   
+    }
 }
+
