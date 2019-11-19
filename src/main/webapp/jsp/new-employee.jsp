@@ -2,11 +2,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="../css/bootstrap.min.css">   		
-        <script src="../js/bootstrap.min.js"></script>     
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/handlePost.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     </head>
     <body>
         <div class="container">
-            <form action="/employee" method="post"  role="form" data-toggle="validator" >
+            <form action="/employee" method="post"  role="form" id="newEmployeeForm">
                 <c:if test ="${empty action}">                        	
                     <c:set var="action" value="add"/>
                 </c:if>
@@ -33,7 +37,7 @@
                     <input type="text" name="email" id="email" class="form-control" value="${employee.email}" placeholder="smith@aol.com" required="true"/>
 
                     <br></br>
-                    <button type="submit" class="btn btn-primary  btn-md">Accept</button> 
+                    <button type="submit" onClick="attachSubmitListner()" class="btn btn-primary  btn-md">Accept</button> 
                 </div>                                                      
             </form>
         </div>
