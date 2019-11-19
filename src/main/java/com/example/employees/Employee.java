@@ -1,7 +1,9 @@
 package com.example.employees;
 
 import java.util.concurrent.atomic.AtomicLong;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
     
     private long id;
@@ -13,25 +15,10 @@ public class Employee {
     private String email;
     private static final AtomicLong counter = new AtomicLong(100);
     
-    public Employee(String name, String lastName, String birthDate, String role, String department, String email, long id) {
-        this.setName(name);
-        this.setName(lastName);
-        this.setBirthDate(birthDate);
-        this.setRole(role);
-        this.setDepartment(department);
-        this.setEmail(email);
-        this.setId(id);
+    public Employee() {
+
     }
-    
-    public Employee(String name, String lastName, String birthDate, String role, String department, String email) {
-        this.setName(name);
-        this.setLastName(lastName);
-        this.setBirthDate(birthDate);
-        this.setRole(role);
-        this.setDepartment(department);
-        this.setEmail(email);     
-        this.setId(counter.incrementAndGet());
-    }
+
 
     public long getId() {
         return id;
