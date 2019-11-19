@@ -35,4 +35,8 @@ public class EmployeeService {
             throw new Exception ("The Employee id " + id + " not found");
         }
     }
+
+    void addEmployee(Employee newEmployee){
+        employeeList.add(newEmployee);
+    }            
 }
