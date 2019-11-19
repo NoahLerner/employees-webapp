@@ -17,6 +17,18 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.6</version>
+    </dependency>
+    <dependency>
+    <!-- json support -->
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.8.2</version>
+    </dependency>
     <dependency>
         <groupId>org.apache.tomcat.embed</groupId>
         <artifactId>tomcat-embed-core</artifactId>
@@ -48,10 +60,29 @@
         <version>${tomcat.version}</version>
     </dependency>
     <dependency>
-        <groupId>jstl</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.2</version>
-    </dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>           
+        
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.25.1</version>
+        </dependency>      
+        
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.22</version>
+        </dependency>
   </dependencies>
   <build>
   <finalName>employees-app</finalName>
